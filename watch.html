@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>시계</title>
+    <script src="jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="app.css">
+</head>
+<body>
+    <div class="container">
+        <div class="watch">
+            <div class="hour">
+                <div class="box">00</div>
+                <div class="box">01</div>
+            </div>
+            <div class="minute">
+                <div class="box">00</div>
+                <div class="box">01</div>
+            </div>
+            <div class="second">
+                <div class="box">00</div>
+                <div class="box">01</div>
+            </div>
+        </div>
+        <div class="control">
+            <button id="button1">START</button>
+            <button id="button2">STOP</button>
+        </div>
+    </div>
+    <script>
+        
+
+        // $("button1").on("click", function (){
+        //         let now = new Date();
+        //         let h = ("00" + now.getHours()).substr(-2);
+        //         let m = ("00" + now.getMinutes()).substr(-2);
+        //         let s = ("00" + now.getSeconds()).substr(-2);
+
+        //         $(".hour > .box").eq(1).text(h);
+        //         $(".minute > .box").eq(1).text(m);
+        //         $(".second > .box").eq(1).text(s);
+
+                
+        //         $(".hour > .box").eq(0).animate({"top":"-100%"}, 500)
+        //         $(".minute > .box").eq(0).animate({"top":"-100%"}, 500)
+        //         $(".second > .box").eq(0).animate({"top":"-100%"}, 500)
+
+        //         $(".hour > .box").eq(1).animate({"top":0}, 500)
+        //         $(".minute > .box").eq(1).animate({"top":0}, 500)
+        //         $(".second > .box").eq(1).animate({"top":0}, 500)
+
+        //         setTimeout(function(){
+        //             $(".hour > .box").eq(0).text(h);
+        //             $(".minute > .box").eq(0).text(m);
+        //             $(".second > .box").eq(0).text(s);
+
+        //             $(".hour > .box").eq(0).css({"top" : 0});
+        //             $(".minute > .box").eq(0).css({"top" : 0});
+        //             $(".second > .box").eq(0).css({"top" : 0});
+                    
+        //             $(".hour > .box").eq(1).css({"top" : "+100%"});
+        //             $(".minute > .box").eq(1).css({"top" : "+100%"});
+        //             $(".second > .box").eq(1).css({"top" : "+100%"});
+        //         }, 600)
+                
+
+        // });
+            let id = 0;
+            let a = function(){
+                let now = new Date();
+                let h  = ("00" + now.getHours()).substr(-2);
+                let m = ("00" + now.getMinutes()).substr(-2);
+                let s = ("00" + now.getSeconds()).substr(-2);
+
+                $(".hour > .box").eq(1).text(h);
+                $(".minute > .box").eq(1).text(m);
+                $(".second > .box").eq(1).text(s);
+
+                if(parseInt(m) == 0) {
+                    $(".hour > .box").eq(0).animate({"top":"-100%"}, 500)
+                    $(".hour > .box").eq(1).animate({"top":0}, 500)
+                }
+                if(parseInt(s) == 0) {
+                $(".minute > .box").eq(0).animate({"top":"-100%"}, 500)
+                $(".minute > .box").eq(1).animate({"top":0}, 500)
+                }
+                
+                $(".second > .box").eq(0).animate({"top":"-100%"}, 500)
+                $(".second > .box").eq(1).animate({"top":0}, 500)
+                setTimeout(function(){
+                    $(".hour > .box").eq(0).text(h);
+                    $(".minute > .box").eq(0).text(m);
+                    $(".second > .box").eq(0).text(s);
+                    
+                    if(parseInt(m) == 0) {
+                    $(".hour > .box").eq(0).css({"top" : 0});
+                    $(".hour > .box").eq(1).css({"top" : "+100%"});
+                    }
+                    if(parseInt(s) == 0) {
+                    $(".minute > .box").eq(0).css({"top" : 0});
+                    $(".minute > .box").eq(1).css({"top" : "+100%"});
+                    }
+                    $(".second > .box").eq(0).css({"top" : 0});
+                    $(".second > .box").eq(1).css({"top" : "+100%"});
+                }, 600)
+
+            }
+            $("#button1").on("click",function () {
+                id = setInterval(a , 1000)
+            });
+            
+            $("#button2").on("click", function () {
+                clearInterval(id);
+
+            } );
+            
+         
+        //$(".hour").on("click", function (){
+         //   alert("시간이 클릭되었어요");
+        //});
+        //$(".minute").on("click", function (){
+         //   alert("분이 클릭되었어요");
+        //});
+        //$(".second").on("click", function (){
+         //   alert("초가 클릭되었어요");
+        //});
+        //$(".minute").text("양영디지털고등학교");
+        //$(".second").text("소프트웨어개발과");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        function 인터벌(){
+    
+                let now = new Date();
+                let h = ("00" + now.getHours()).substr(-2);
+                let m = ("00" + now.getMinutes()).substr(-2);
+                let s = ("00" + now.getSeconds()).substr(-2);
+                console.clear();
+                console.log(`${h} : ${m} : ${s}`);
+    }
+
+        //id = setInterval(인터벌, 1000);
+    </script>
+</body>
+</html>
