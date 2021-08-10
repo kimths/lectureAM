@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="./slide.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="content">
+            <div class="slider">
+                <div class="box">
+                    <img src="images/01.png" alt="01.png">
+                </div>
+                <div class="box">
+                    <img src="images/02.png" alt="01.png">
+                </div>
+                <div class="box">
+                    <img src="images/03.png" alt="01.png">
+                </div>
+                <div class="box">
+                    <img src="images/04.png" alt="01.png">
+                </div>
+            </div>
+            <div class="controller">
+                <button class="controlBtn" id="prev">&lt;</button>
+                <button class="controlBtn" id="next">&gt;</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // $("#next").on("click", function(){
+        //     $(".slider > .box").eq(1).animate({"left": "100%"},500);
+        //     $(".slider > .box").eq(0).animate({"left": 0},500);
+        // });
+
+        // $("#prev").on("click", function(){
+        //     $(".slider > .box").eq(1).animate({"left": 0},500);
+        //     $(".slider > .box").eq(0).animate({"left": "-100%"},500);
+        // });
+
+        let current = 0; //0번쨰 그림을 보고있다.
+        let isSlide = false;
+        $("#prev").on("click", function() {
+            //현재 니나브 그림이라면 왼쪽 클릭시 아무일도 일어나지 않아야한다
+            if (isSlide) return;
+            current--;
+            slide();
+        });
+
+        $("#next").on("click", function() {
+            //현재 모코코 그림이라면 오른쪽 클릭시 아무일도 일어나지 않아야한다
+            if (isSlide) return;
+            current++;
+            slide();
+        });
+
+        function slide() {
+            isSlide = true;
+            $(".slider").animate({
+                "left": `-${current * 300}px`
+            }, 500, function() {
+                isSlide = false;
+            });
+
+            if (current <= 0) {
+                $("#prev").attr("disabled", true);
+            } else if (current >= 3) {
+                $("#next").attr("disabled", true);
+            } else {
+                $("#prev").attr("disabled", false);
+                $("#next").attr("disabled", false);
+            }
+        }
+    </script>
+</body>
+
+</html>
